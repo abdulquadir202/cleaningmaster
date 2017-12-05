@@ -17,6 +17,12 @@ app.get('/blog', routes.blog);
 app.get('/services', routes.services);
 app.get('/contact', routes.contact);
 
+app.get('/error', function(req, res, next){
+	next(new Error('A contrived error'));
+});
+app.use(errorHandlers.error);
+app.use(errorHandlers.notFound);
+
 
 app.listen(3002)
     console.log('server running port 3002');
